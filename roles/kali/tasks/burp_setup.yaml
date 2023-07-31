@@ -1,0 +1,72 @@
+- name: Getting process IDs of the process
+  community.general.pids:
+    pattern: .*BurpSuitePro
+  register: pids_of_burp
+  tags: burp
+
+- name: Start Burp if not running
+  block: 
+    - name: Start headless Burp
+      shell: 'nohup java -jar -Djava.awt.headless=true /usr/local/BurpSuitePro/burpsuite_pro.jar &'
+
+    - name: Wait for Burp to warm up
+      wait_for:
+        port: 8080
+        delay: 10
+  when: pids_of_burp.pids|length ==0
+  tags: burp
+
+- name: Download Burp cert 
+  get_url:
+    url: http://localhost:8080/cert
+    dest: /tmp/BurpCA.der
+  tags: burp
+
+- name: Kill Burp process
+  block:
+    - name: Find running burp processes
+      community.general.pids:
+          pattern: .*BurpSuitePro
+      register: pids_of_burp
+    - name: Kill burp processes
+      command: "kill {{ item }}"
+      with_items: "{{ pids_of_burp.pids }}"
+  tags: burp
+
+- name: Install Certutil
+  apt:
+    pkg: libnss3-tools
+  become: true
+  tags: burp
+
+- name: Start Firefox for the first time
+  block:
+  - name: Start headless firefox
+    shell: 'nohup firefox-esr --headless &'
+  - name: Wait for Firefox to start
+    wait_for:
+      timeout: 10
+  tags: burp
+
+- name: Kill Firefox process
+  block:
+    - name: Find running firefox processes
+      community.general.pids:
+          pattern: .*firefox-esr --headless
+      register: pids_of_firefox
+    - name: Kill firefox processes
+      command: "kill {{ item }}"
+      with_items: "{{ pids_of_firefox.pids }}"
+  tags: burp
+
+- name: Find Mozilla cert database
+  find:
+    path: /home/vnc/.mozilla/firefox/
+    pattern: '*.default-esr'
+    file_type: directory
+  register: mozilla_cert_db
+  tags: burp
+
+- name: Add Burp CA to Mozilla cert database
+  command: 'certutil -A -i /tmp/BurpCA.der -t CT,c -n "PortSwigger CA" -d {{ mozilla_cert_db.files[0].path }}'
+  tags: burp

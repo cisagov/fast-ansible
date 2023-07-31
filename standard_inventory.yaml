@@ -1,0 +1,19 @@
+# TODO: dynamically update inventory using awscli.
+all:
+  children:
+    workstations:
+      children:
+        kalis:
+          hosts:
+            # Change range to match current number of kalis
+            kali[0:5]
+        windows:
+          hosts:
+            windows0
+    ptp:
+      hosts:
+        pentestportal1
+    teamservers:
+      hosts:
+        teamserver[0:1]
+    

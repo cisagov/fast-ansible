@@ -56,7 +56,7 @@
     - name: Copy feroxbuster config 
       copy:
         dest: /etc/feroxbuster/ferox-config.toml
-        src: /feroxbuster/ferox-config.toml
+        src: feroxbuster/ferox-config.toml
         mode: 0644
   become: true
 

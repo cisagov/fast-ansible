@@ -10,10 +10,10 @@ ansible-galaxy install -r requirements.yaml
 
 Run the playbook locally:
 ```
-ansible-playbook site.yaml --connection=local -i local_only_inventory.yaml
+ansible-playbook site.yaml --connection=local -i local_only_inventory.yaml -e ansible_python_interpreter=/usr/bin/python3
 ```
 
 Run the playbook remotely (requires remote SSH access):
 ```
-ansible-playbook site.yaml -i standard_inventory.yaml
+ansible-playbook site.yaml -i standard_inventory.yaml -e ansible_python_interpreter=/usr/bin/python3
 ```

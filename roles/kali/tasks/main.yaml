@@ -231,3 +231,31 @@
 - name: Setup Burp
   include_tasks: burp_setup.yaml
   tags: burp
+
+- name: Set up /share
+  block:
+    - name: Make /share directory
+      file:
+        path: "/share"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+      become: true
+    - name: Get fstab line
+      local_action: shell grep share /etc/fstab
+      register: mount_share
+    - name: Show grep results
+      debug:
+        msg: "Line from fstab is {{ mount_share.stdout }}"
+    - name: Append to /etc/fstab
+      lineinfile:
+        dest: /etc/fstab
+        backup: yes
+        line: "{{ mount_share.stdout }}"
+        insertafter: EOF
+        create: true
+      become: true
+    - name: Mount /share
+      shell: mount /share
+      become: true

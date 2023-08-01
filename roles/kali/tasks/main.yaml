@@ -100,28 +100,20 @@
         state: directory
     - name: Move Gf patterns
       block:
-        - name: Find tomnomnom path
+        - name: Find tomnomnom and 1ndianl33t patterns
           find:
-            path: /home/vnc/go/pkg/mod/github.com/tomnomnom
-            file_type: directory
-          register: tomnomnom_path
-        - name: Copy tomnomnom patterns
+            paths: [ "/home/vnc/go/pkg/mod/github.com/tomnomnom/", "/tmp/Gf-Patterns/" ]
+            recurse: yes
+            file_type: file
+            patterns: "*.json"
+          register: gf_json
+        - debug: msg="{{gf_json}}"
+        - name: Copy gf json files
           copy:
-            src: '{{ tomnomnom_path.files[0].path }}/examples/'
-            dest: /home/vnc/.gf/
-            force: false
-        - name: Find 1ndianl33t patterns
-          find:
-            path: '/tmp/Gf-Patterns'
-            patterns: '*.json'
-          register: l33t_patterns
-        - name: Copy 1ndianl33t patterns
-          copy:
+            remote_src: yes
             src: "{{ item.path }}"
-            dest: /home/vnc/.gf/
-            force: false
-          with_items:
-            - '{{ l33t_patterns.files }}'
+            dest: "/home/vnc/.gf"                           
+          loop: "{{ gf_json.files}}"
     - name: Configure bashrc GF
       blockinfile:
         path: /home/vnc/.bashrc

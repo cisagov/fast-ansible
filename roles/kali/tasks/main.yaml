@@ -3,12 +3,18 @@
     update_cache: yes
     cache_valid_time: 600
   become: true
+  tags:
+    - apt
+    - config
 
 - name: Update all packages to their latest version
   apt:
     name: "*"
     state: latest
   become: true
+  tags:
+    - apt
+    - config
 
 - name: Prep /opt
   block:
@@ -25,6 +31,9 @@
           directory = /opt/*
       marker_begin: Safe OPT
       create: true
+  tags:
+    - config
+    - git
 
 - name: Install ASN
   block:
@@ -47,6 +56,9 @@
         dest: /usr/bin/asn
         mode: 0755
   become: true
+  tags:
+    - pkg-install
+    - asn
 
 - name: Install Feroxbuster
   block:
@@ -59,6 +71,9 @@
         src: feroxbuster/ferox-config.toml
         mode: 0644
   become: true
+  tags:
+    - pkg-install
+    - feroxbuster
 
 # TODO: Loop or Verbose?
 - name: Install GoLang packages
@@ -80,7 +95,10 @@
         cmd: '/usr/bin/go install github.com/ameenmaali/wordlistgen@latest'
     - name: Go install Trashcompactor
       command: 
-        cmd: '/usr/bin/go install github.com/michael1026/trashcompactor@latest'       
+        cmd: '/usr/bin/go install github.com/michael1026/trashcompactor@latest'
+  tags:
+    - pkg-install
+    - golang
 
 - name: Install and configure GF
   block:
@@ -120,6 +138,9 @@
         block: |
           source $HOME/go/pkg/mod/github.com/tomnomnom/gf*/gf-completion.bash
         marker_begin: GF
+  tags:
+    - pkg-install
+    - gf
 
 - name: Install ripgen
   block:
@@ -132,6 +153,9 @@
         block: |
           export PATH="/home/vnc/.cargo/bin:$PATH"
         marker_begin: Ripgen
+  tags:
+    - pkg-install
+    - ripgen
 
 - name: Configure bashrc gopath  
   blockinfile:
@@ -141,6 +165,9 @@
       export GOPATH=$HOME/go
       export PATH=$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:$PATH
     marker_begin: GoLang
+  tags:
+    - config
+    - golang
       
 - name: Install git projects
   block:
@@ -169,15 +196,25 @@
       dest: /usr/local/bin/kr
       state: link
     become: true
+  tags:
+    - pkg-install
+    - git
 
-  - name: Git clone Trufflehog
-    git: 
-      repo: https://github.com/trufflesecurity/trufflehog.git
-      dest: /opt/trufflehog
-  - name: Go install Trufflehog
-    command: 
-      cmd: '/usr/bin/go install'
-      chdir: /opt/trufflehog 
+- name: Install Trufflehog
+  block:
+    - name: Git clone Trufflehog
+      git: 
+        repo: https://github.com/trufflesecurity/trufflehog.git
+        dest: /opt/trufflehog
+    - name: Go install Trufflehog
+      command: 
+        cmd: '/usr/bin/go install'
+        chdir: /opt/trufflehog
+  tags:
+    - pkg-install
+    - git
+    - trufflehog
+
 
 - name: Install python packages
   block: 
@@ -199,6 +236,9 @@
         dest: /home/vnc/.local/bin/xnLinkFinder.py
         mode: '0755'
         state: link
+  tags:
+    - python
+    - pkg-install
 
 - name: Configure vimrc
   blockinfile:
@@ -208,6 +248,8 @@
       set mouse=a
     marker: '" {mark} ANSIBLE MANAGED BLOCK'
     create: true
+  tags:
+    - config
 
 # TODO: Include version pinning
 - name: Install default apps
@@ -223,14 +265,19 @@
       - wfuzz
       - whatweb
   become: true
+  tags:
+    - pkg-install
 
 - name: Update locate database
   command: updatedb
   become: true
+  tags:
+    - pkg-install
 
 - name: Setup Burp
   include_tasks: burp_setup.yaml
-  tags: burp
+  tags:
+    - burp
 
 - name: Set up /share
   block:
@@ -259,3 +306,6 @@
     - name: Mount /share
       shell: mount /share
       become: true
+  tags:
+    - config
+    - setup-share

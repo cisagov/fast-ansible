@@ -1,4 +1,11 @@
-- hosts: kalis
+---
+- name: Set up a kali instance
+  kosts: kalis
+  vars:
+    burpsuite_user: vnc
+    burpsuite_edition: pro
+    burpsuite_pro_license_key: PLACE_HOLDER
   roles:
-    - 'common'
-    - 'kali'
+    - "roles/common"
+    - "roles/kali"
+    - "roles/burpsuite"

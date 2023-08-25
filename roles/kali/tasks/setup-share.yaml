@@ -1,0 +1,37 @@
+---
+- name: Setup fileshare
+  tags:
+    - initial-config
+    - setup-share
+  block:
+    - name: Make /share directory
+      ansible.builtin.file:
+        path: "/share"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+      ansible.builtin.become: true
+      ansible.builtin.become_method: sudo
+
+    - name: Get fstab line
+      ansible.builtin.command: grep share /etc/fstab
+      delegate_to: localhost
+      register: mount_share
+      changed_when: false
+
+    - name: Append to /etc/fstab
+      ansible.builtin.lineinfile:
+        dest: /etc/fstab
+        mode: "0644"
+        backup: true
+        line: "{{ mount_share.stdout }}"
+        insertafter: EOF
+        create: true
+      ansible.builtin.become: true
+      ansible.builtin.become_method: sudo
+
+    - name: Mount /share
+      ansible.builtin.command: mount /share
+      ansible.builtin.become: true
+      ansible.builtin.become_method: sudo

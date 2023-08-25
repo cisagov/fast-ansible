@@ -1,0 +1,28 @@
+---
+- name: Install kiterunner
+  tags:
+    - external-pkgs
+    - kiterunner
+  block:
+    - name: Clone kiterunner repo
+      ansible.builtin.git:
+        repo: https://github.com/assetnote/kiterunner.git # noqa: latest
+        dest: /opt/kiterunner
+
+    - name: Build Kiterunner
+      make:
+        chdir: /opt/kiterunner
+
+    - name: Create Kiterunner symlink
+      file:
+        src: /opt/kiterunner/dist/kr
+        dest: /usr/local/bin/kr
+        state: link
+      ansible.builtin.become: true
+      ansible.builtin.become_method: sudo
+
+- name: Clone nuclei templates
+  tags: nuclei-templates
+  ansible.builtin.git:
+    repo: https://github.com/projectdiscovery/nuclei-templates # noqa: latest
+    dest: /opt/nuclei-templates

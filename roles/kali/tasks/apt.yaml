@@ -1,0 +1,86 @@
+---
+- name: Initial configuration
+
+  tags:
+    - apt
+    - initial-config
+
+  block:
+    - name: Run apt update
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 600
+      ansible.builtin.become: true
+      ansible.builtin.become_method: sudo
+
+    - name: Update all default packages to their latest version
+      ansible.builtin.apt:
+        upgrade: dist
+      ansible.builtin.become: true
+      ansible.builtin.become_method: sudo
+
+    # TODO: Include version pinning
+    - name: Install additional apps from repository
+      tags: add-pkgs
+      ansible.builtin.apt:
+        pkg:
+          - aha
+          - amass
+          - bash-completion
+          - bind9-host
+          - curl
+          - feroxbuster
+          - grepcidr
+          - joplin
+          - jq
+          - locate
+          - mtr-tiny
+          - ncat
+          - nmap
+          - python-is-python3
+          - vim-nox
+          - wafw00f
+          - wfuzz
+          - whatweb
+          - whois
+      ansible.builtin.become: true
+      ansible.builtin.become_method: sudo
+
+- name: Configure vimrc
+  tags: add-pkgs
+  ansible.builtin.blockinfile:
+    path: /home/vnc/.vimrc
+    mode: "0644"
+    block: |
+      runtime defaults.vim:
+      set mouse=-a
+    marker: '" {mark} ANSIBLE MANAGED BLOCK'
+    create: true
+
+- name: Update locate database
+  tags: add-pkgs
+  command: updatedb
+  ansible.builtin.become: true
+  ansible.builtin.become_method: sudo
+
+- name: Curl ASN script
+  tags:
+    - external-pkgs
+    - asn
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/nitefood/asn/master/asn
+    dest: /usr/bin/asn
+    mode: "0755"
+  ansible.builtin.become: true
+  ansible.builtin.become_method: sudo
+
+- name: Copy feroxbuster config
+  tags:
+    - external-pkgs
+    - feroxbuster
+  ansible.builtin.copy:
+    dest: /etc/feroxbuster/ferox-config.toml
+    src: feroxbuster/ferox-config.toml
+    mode: "0644"
+  ansible.builtin.become: true
+  ansible.builtin.become_method: sudo

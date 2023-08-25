@@ -1,0 +1,16 @@
+---
+- name: Install ripgen
+  tags:
+    - external-pkgs
+    - ripgen
+  block:
+    - name: Install ripgen using cargo
+      community.general.cargo:
+        name: ripgen
+    - name: Configure .bashrc for ripgen
+      ansible.builtin.blockinfile:
+        path: /home/vnc/.bashrc
+        mode: "0644"
+        block: |
+          export PATH="/home/vnc/.cargo/bin:$PATH"
+        marker_begin: ANSIBLE_RIPGEN

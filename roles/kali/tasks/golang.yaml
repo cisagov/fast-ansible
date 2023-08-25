@@ -1,0 +1,121 @@
+---
+- name: Configure bashrc gopath
+  tags:
+    - golang
+    - external-pkgs
+    - metabigor
+    - gau
+    - croc
+    - shosubgo
+    - wordlistgen
+    - trashcompactor
+    - waybackurl
+    - gf
+  ansible.builtin.blockinfile:
+    path: /home/vnc/.bashrc
+    mode: 644
+    block: |
+      export GOROOT=/usr/lib/go
+      export GOPATH=$HOME/go
+      export PATH=$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:$PATH
+    marker_begin: ANSIBLE_GOLANG
+
+# TODO: Loop or Verbose?
+- name: Install golang packages
+  tags:
+    - external-pkgs
+  block:
+    - name: Install metabigor
+      tags: metabigor
+      ansible.builtin.command: '/usr/bin/go install github.com/j3ssie/metabigor@latest'
+      changed_when: false
+
+    - name: Install gau
+      tags: gau
+      ansible.builtin.command: '/usr/bin/go install github.com/lc/gau/v2/cmd/gau@latest'
+      changed_when: false
+
+    - name: Install croc
+      tags: croc
+      ansible.builtin.command: '/usr/bin/go install github.com/schollz/croc/v9@latest'
+      changed_when: false
+
+    - name: Install shosubgo
+      tags: shosubgo
+      ansible.builtin.command: '/usr/bin/go install github.com/incogbyte/shosubgo@latest'
+      changed_when: false
+
+    - name: Install wordlistgen
+      tags: wordlistgen
+      ansible.builtin.command: '/usr/bin/go install github.com/ameenmaali/wordlistgen@latest'
+      changed_when: false
+
+    - name: Install trashcompactor
+      tags: trashcompactor
+      ansible.builtin.command: '/usr/bin/go install github.com/michael1026/trashcompactor@latest'
+      changed_when: false
+
+    - name: Install waybackurl
+      tags: waybackurl
+      ansible.builtin.command: '/usr/bin/go install github.com/tomnomnom/waybackurls@latest'
+      changed_when: false
+
+    - name: Install gf
+      tags: gf
+      ansible.builtin.command: '/usr/bin/go install github.com/tomnomnom/gf@latest'
+      changed_when: false
+
+    - name: Configure gf
+      tags: gf
+      block:
+        - name: Clone 1ndianl33t gf repo
+          ansible.builtin.git:
+            repo: 'https://github.com/1ndianl33t/Gf-Patterns' # noqa: latest
+            dest: /tmp/Gf-Patterns
+
+        - name: Create .gf directory
+          ansible.builtin.file:
+            path: /home/vnc/.gf
+            mode: "0755"
+            state: directory
+
+        - name: Move gf patterns to .gf
+          block:
+            - name: Find tomnomnom and 1ndianl33t patterns
+              ansible.builtin.find:
+                paths: ["/home/vnc/go/pkg/mod/github.com/tomnomnom/", "/tmp/Gf-Patterns/"]
+                recurse: true
+                file_type: file
+                patterns: "*.json"
+              register: gf_json
+
+            - name: Copy gf json files
+              ansible.builtin.copy:
+                mode: "0644"
+                remote_src: true
+                src: "{{ item.path }}"
+                dest: "/home/vnc/.gf"
+              loop: "{{ gf_json.files }}"
+
+        - name: Configure .bashrc for gf
+          ansible.builtin.blockinfile:
+            path: /home/vnc/.bashrc
+            mode: "0644"
+            block: |
+              source $HOME/go/pkg/mod/github.com/tomnomnom/gf*/gf-completion.bash
+            marker_begin: ANSIBLE_GF
+
+    - name: Install trufflehog
+      tags:
+        - external-pkgs
+        - trufflehog
+      block:
+        - name: Clone trufflehog repo
+          ansible.builtin.git:
+            repo: https://github.com/trufflesecurity/trufflehog.git # noqa: latest
+            dest: /opt/trufflehog
+        - name: Install trufflehog
+          ansible.builtin.command:
+            cmd: '/usr/bin/go install'
+            chdir: /opt/trufflehog
+          changed_when: false

@@ -1,3 +1,5 @@
+Credit and thanks to iesplin ([https://github.com/iesplin](https://github.com/iesplin)) for ansible-role-burpsuite and to IppSec ([https://github.com/IppSec/parrot-build/](https://github.com/IppSec/parrot-build)) for the customize-browser role.
+
 Install dependencies:
 ```
 sudo -c 'echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main" >> /etc/apt/sources.list.d/ansible.list'

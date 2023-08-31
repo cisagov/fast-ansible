@@ -8,4 +8,5 @@
   roles:
     - "roles/common"
     - "roles/kali"
-    - "roles/burpsuite"
+      #- "roles/firefox"
+      #- "roles/burpsuite"

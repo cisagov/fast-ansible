@@ -1,3 +1,0 @@
-[submodule "roles/burpsuite"]
-	path = roles/burpsuite
-	url = https://github.com/iesplin/ansible-role-burpsuite.git

@@ -1,6 +1,6 @@
 ---
 - name: Set up a kali instance
-  kosts: kalis
+  hosts: kalis
   vars:
     burpsuite_user: vnc
     burpsuite_edition: pro

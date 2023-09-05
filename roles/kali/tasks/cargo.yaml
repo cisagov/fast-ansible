@@ -10,7 +10,7 @@
     - name: Configure .bashrc for ripgen
       ansible.builtin.blockinfile:
         path: /home/vnc/.bashrc
-        mode: "0644"
+        mode: '644'
         block: |
           export PATH="/home/vnc/.cargo/bin:$PATH"
         marker_begin: ANSIBLE_RIPGEN

@@ -10,7 +10,7 @@
         state: directory
         owner: root
         group: root
-        mode: "0755"
+        mode: '755'
       become: true
       become_method: ansible.builtin.sudo
 
@@ -23,7 +23,7 @@
     - name: Append to /etc/fstab
       ansible.builtin.lineinfile:
         dest: /etc/fstab
-        mode: "0644"
+        mode: '644'
         backup: true
         line: "{{ mount_share.stdout }}"
         insertafter: EOF

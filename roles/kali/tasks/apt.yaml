@@ -50,7 +50,7 @@
   tags: add-pkgs
   ansible.builtin.blockinfile:
     path: /home/vnc/.vimrc
-    mode: "0644"
+    mode: '644'
     block: |
       runtime defaults.vim:
       set mouse=-a
@@ -71,7 +71,7 @@
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/nitefood/asn/master/asn
     dest: /usr/bin/asn
-    mode: "0755"
+    mode: '755'
   become: true
   become_method: ansible.builtin.sudo
 
@@ -82,6 +82,6 @@
   ansible.builtin.copy:
     dest: /etc/feroxbuster/ferox-config.toml
     src: feroxbuster/ferox-config.toml
-    mode: "0644"
+    mode: '644'
   become: true
   become_method: ansible.builtin.sudo

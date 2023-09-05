@@ -13,7 +13,7 @@
     - gf
   ansible.builtin.blockinfile:
     path: /home/vnc/.bashrc
-    mode: 644
+    mode: '644'
     block: |
       export GOROOT=/usr/lib/go
       export GOPATH=$HOME/go
@@ -76,7 +76,7 @@
         - name: Create .gf directory
           ansible.builtin.file:
             path: /home/vnc/.gf
-            mode: "0755"
+            mode: '755'
             state: directory
 
         - name: Move gf patterns to .gf
@@ -91,7 +91,7 @@
 
             - name: Copy gf json files
               ansible.builtin.copy:
-                mode: "0644"
+                mode: '644'
                 remote_src: true
                 src: "{{ item.path }}"
                 dest: "/home/vnc/.gf"
@@ -100,7 +100,7 @@
         - name: Configure .bashrc for gf
           ansible.builtin.blockinfile:
             path: /home/vnc/.bashrc
-            mode: "0644"
+            mode: '644'
             block: |
               source $HOME/go/pkg/mod/github.com/tomnomnom/gf*/gf-completion.bash
             marker_begin: ANSIBLE_GF

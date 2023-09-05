@@ -5,13 +5,13 @@
     - name: Set mode for /opt
       ansible.builtin.file:
         path: /opt
-        mode: "0755"
+        mode: '755'
       become: true
       become_method: ansible.builtin.sudo
     - name: Mark /opt as safe within git
       ansible.builtin.blockinfile:
         path: /home/vnc/.gitconfig
-        mode: "0644"
+        mode: '644'
         block: |
           [safe]
             directory = /opt/*
@@ -54,5 +54,5 @@
           ansible.builtin.file:
             src: /home/vnc/.local/lib/python3.11/site-packages/xnLinkFinder.py
             dest: /home/vnc/.local/bin/xnLinkFinder.py
-            mode: "0755"
+            mode: '755'
             state: link

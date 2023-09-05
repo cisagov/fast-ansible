@@ -34,7 +34,7 @@
       make:
         chdir: /opt/kiterunner
       become: true
-      become_method: ansible.builtin.sudo  
+      become_method: ansible.builtin.sudo
 
     - name: Create Kiterunner symlink
       ansible.builtin.file:
@@ -49,3 +49,5 @@
   ansible.builtin.git:
     repo: https://github.com/projectdiscovery/nuclei-templates # noqa: latest
     dest: /opt/nuclei-templates
+  become: true
+  become_method: ansible.builtin.sudo

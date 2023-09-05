@@ -1,4 +1,23 @@
 ---
+- name: Prepare /opt
+  tags: git
+  block:
+    - name: Set mode for /opt
+      ansible.builtin.file:
+        path: /opt
+        mode: "0755"
+      become: true
+      become_method: ansible.builtin.sudo
+    - name: Mark /opt as safe within git
+      ansible.builtin.blockinfile:
+        path: /home/vnc/.gitconfig
+        mode: "0644"
+        block: |
+          [safe]
+            directory = /opt/*
+        marker_begin: ANSIBLE_SAFE_OPT
+        create: true
+
 - name: Install kiterunner
   tags:
     - external-pkgs

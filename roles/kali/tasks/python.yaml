@@ -5,9 +5,9 @@
     - name: Set mode for /opt
       ansible.builtin.file:
         path: /opt
-        mode: "0777"
-      ansible.builtin.become: true
-      ansible.builtin.become_method: sudo
+        mode: "0755"
+      become: true
+      become_method: ansible.builtin.sudo
     - name: Mark /opt as safe within git
       ansible.builtin.blockinfile:
         path: /home/vnc/.gitconfig

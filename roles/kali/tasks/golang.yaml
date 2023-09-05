@@ -121,3 +121,5 @@
             cmd: '/usr/bin/go install'
             chdir: /opt/trufflehog
           changed_when: false
+          become: true
+          become_method: ansible.builtin.sudo

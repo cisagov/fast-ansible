@@ -18,8 +18,8 @@
         src: /opt/kiterunner/dist/kr
         dest: /usr/local/bin/kr
         state: link
-      ansible.builtin.become: true
-      ansible.builtin.become_method: sudo
+      become: true
+      become_method: ansible.builtin.sudo
 
 - name: Clone nuclei templates
   tags: nuclei-templates

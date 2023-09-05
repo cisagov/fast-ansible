@@ -2,10 +2,10 @@
 # Include tasks
 
 - name: Perform full-upgrade and install additional packages using apt
-  ansible.builtin.include_tasks: "roles/kali/tasks/apt.yml"
+  ansible.builtin.include_tasks: "roles/kali/tasks/apt.yaml"
 
 - name: Install rust packages using cargo
-  ansible.builtin.include_tasks: "roles/kali/tasks/cargo.yml"
+  ansible.builtin.include_tasks: "roles/kali/tasks/cargo.yaml"
 
 - name: Install additional tools using git
   ansible.builtin.include_tasks: "roles/kali/tasks/git.yaml"

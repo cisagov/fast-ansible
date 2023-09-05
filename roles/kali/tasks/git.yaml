@@ -33,6 +33,8 @@
     - name: Build Kiterunner
       make:
         chdir: /opt/kiterunner
+      become: true
+      become_method: ansible.builtin.sudo  
 
     - name: Create Kiterunner symlink
       ansible.builtin.file:

@@ -10,14 +10,14 @@
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: 600
-      ansible.builtin.become: true
-      ansible.builtin.become_method: sudo
+      become: true
+      become_method: ansible.builtin.sudo
 
     - name: Update all default packages to their latest version
       ansible.builtin.apt:
         upgrade: dist
-      ansible.builtin.become: true
-      ansible.builtin.become_method: sudo
+      become: true
+      become_method: ansible.builtin.sudo
 
     # TODO: Include version pinning
     - name: Install additional apps from repository
@@ -43,8 +43,8 @@
           - wfuzz
           - whatweb
           - whois
-      ansible.builtin.become: true
-      ansible.builtin.become_method: sudo
+      become: true
+      become_method: ansible.builtin.sudo
 
 - name: Configure vimrc
   tags: add-pkgs
@@ -59,9 +59,10 @@
 
 - name: Update locate database
   tags: add-pkgs
-  command: updatedb
-  ansible.builtin.become: true
-  ansible.builtin.become_method: sudo
+  ansible.builtin.command: updatedb
+  changed_when: false
+  become: true
+  become_method: ansible.builtin.sudo
 
 - name: Curl ASN script
   tags:
@@ -71,8 +72,8 @@
     url: https://raw.githubusercontent.com/nitefood/asn/master/asn
     dest: /usr/bin/asn
     mode: "0755"
-  ansible.builtin.become: true
-  ansible.builtin.become_method: sudo
+  become: true
+  become_method: ansible.builtin.sudo
 
 - name: Copy feroxbuster config
   tags:
@@ -82,5 +83,5 @@
     dest: /etc/feroxbuster/ferox-config.toml
     src: feroxbuster/ferox-config.toml
     mode: "0644"
-  ansible.builtin.become: true
-  ansible.builtin.become_method: sudo
+  become: true
+  become_method: ansible.builtin.sudo

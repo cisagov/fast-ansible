@@ -8,13 +8,15 @@
       ansible.builtin.git:
         repo: https://github.com/assetnote/kiterunner.git # noqa: latest
         dest: /opt/kiterunner
+      become: true
+      become_method: ansible.builtin.sudo
 
     - name: Build Kiterunner
       make:
         chdir: /opt/kiterunner
 
     - name: Create Kiterunner symlink
-      file:
+      ansible.builtin.file:
         src: /opt/kiterunner/dist/kr
         dest: /usr/local/bin/kr
         state: link

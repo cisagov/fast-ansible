@@ -15,10 +15,28 @@
     path: /home/vnc/.bashrc
     mode: '644'
     block: |
-      export GOROOT=/usr/lib/go
+      export GOROOT=/usr/local/go
       export GOPATH=$HOME/go
       export PATH=$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:$PATH
     marker_begin: ANSIBLE_GOLANG
+
+- name: Update golang
+  block:
+    - name: Find latest golang version
+      ansible.builtin.uri:
+        url: https://go.dev/VERSION?m=text
+        return_content: true
+      register: golang_version
+    - name: Download latest golang
+      ansible.builtin.get_url:
+        url: https://dl.google.com/go/{{ golang_version }}.linux-amd64.tar.gz
+        dest: /tmp/{{ golang_version }}.linux-amd64.tar.gz
+        mode: '644'
+    - name: Extract golang tarball
+      ansible.builtin.unarchive:
+        src: /tmp/{{ golang_version }}.linux-amd64.tar.gz
+        dest: /usr/local/go
+        mode: '644'
 
 # TODO: Loop or Verbose?
 - name: Install golang packages

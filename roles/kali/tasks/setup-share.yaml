@@ -11,8 +11,8 @@
         owner: root
         group: root
         mode: "0755"
-      ansible.builtin.become: true
-      ansible.builtin.become_method: sudo
+      become: true
+      become_method: ansible.builtin.sudo
 
     - name: Get fstab line
       ansible.builtin.command: grep share /etc/fstab
@@ -28,10 +28,12 @@
         line: "{{ mount_share.stdout }}"
         insertafter: EOF
         create: true
-      ansible.builtin.become: true
-      ansible.builtin.become_method: sudo
+      become: true
+      become_method: ansible.builtin.sudo
 
     - name: Mount /share
-      ansible.builtin.command: mount /share
-      ansible.builtin.become: true
-      ansible.builtin.become_method: sudo
+      ansible.posix.mount:
+        path: /share
+        state: mounted
+      become: true
+      become_method: ansible.builtin.sudo

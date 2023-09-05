@@ -26,15 +26,17 @@
       ansible.builtin.uri:
         url: https://go.dev/VERSION?m=text
         return_content: true
-      register: golang_version
+      register: golang_version_raw
+      set_fact:
+        golang_version: "{{ golang_version_raw | regex_search('\n.*','') }}"
     - name: Download latest golang
       ansible.builtin.get_url:
-        url: https://dl.google.com/go/{{ golang_version.content }}.linux-amd64.tar.gz
-        dest: /tmp/{{ golang_version.content }}.linux-amd64.tar.gz
+        url: https://dl.google.com/go/{{ golang_version }}.linux-amd64.tar.gz
+        dest: /tmp/{{ golang_version }}.linux-amd64.tar.gz
         mode: '644'
     - name: Extract golang tarball
       ansible.builtin.unarchive:
-        src: /tmp/{{ golang_version.content }}.linux-amd64.tar.gz
+        src: /tmp/{{ golang_version }}.linux-amd64.tar.gz
         dest: /usr/local/go
         mode: '644'
 

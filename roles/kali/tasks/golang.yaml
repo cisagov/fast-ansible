@@ -114,6 +114,8 @@
           ansible.builtin.git:
             repo: https://github.com/trufflesecurity/trufflehog.git # noqa: latest
             dest: /opt/trufflehog
+          become: true
+          become_method: ansible.builtin.sudo
         - name: Install trufflehog
           ansible.builtin.command:
             cmd: '/usr/bin/go install'

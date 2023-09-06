@@ -25,6 +25,8 @@
       ansible.builtin.git:
         repo: https://github.com/gwen001/github-search # noqa: latest
         dest: /opt/github-search
+      become: true
+      become_method: ansible.builtin.sudo
     - name: Install github-search requirements
       ansible.builtin.pip:
         requirements: /opt/github-search/requirements.txt

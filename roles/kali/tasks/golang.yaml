@@ -27,7 +27,9 @@
         url: https://go.dev/VERSION?m=text
         return_content: true
       register: golang_version_raw
-      golang_version: "{{ golang_version_raw | regex_replace('\n.*','') }}"
+    - name: Grep version and set as variable
+      ansible.builtin.set_fact:
+        golang_version: "{{ golang_version_raw | regex_replace('\n.*','') }}"
     - name: Download latest golang
       ansible.builtin.get_url:
         url: https://dl.google.com/go/{{ golang_version }}.linux-amd64.tar.gz

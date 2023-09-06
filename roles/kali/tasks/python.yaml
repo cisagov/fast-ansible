@@ -27,6 +27,15 @@
         dest: /opt/github-search
       become: true
       become_method: ansible.builtin.sudo
+    - name: Fix ownership for /opt/github-search venv
+      ansible.builtin.file:
+        path: /opt/github-search
+        state: directory
+        owner: vnc
+        group: vnc
+        recurse: true
+      become: true
+      become_method: ansible.builtin.sudo
     - name: Install github-search requirements
       ansible.builtin.pip:
         requirements: /opt/github-search/requirements.txt

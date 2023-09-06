@@ -30,19 +30,27 @@
     - name: Grep version and set as variable
       ansible.builtin.set_fact:
         golang_version: "{{ golang_version_raw.content | regex_replace('\n.*','') }}"
-    - name: Debug
-      ansible.builtin.debug:
-        msg: "{{ golang_version }}"
     - name: Download latest golang
       ansible.builtin.get_url:
         url: https://dl.google.com/go/{{ golang_version }}.linux-amd64.tar.gz
         dest: /tmp/{{ golang_version }}.linux-amd64.tar.gz
         mode: '644'
+    - name: Create golang directory
+      ansible.builtin.file:
+        path: /usr/local/go
+        state: directory
+        owner: root
+        group: root
+        mode: '755'
+      become: true
+      become_method: ansible.builtin.sudo
     - name: Extract golang tarball
       ansible.builtin.unarchive:
         src: /tmp/{{ golang_version }}.linux-amd64.tar.gz
         dest: /usr/local/go
         mode: '644'
+      become: true
+      become_method: ansible.builtin.sudo
 
 # TODO: Loop or Verbose?
 - name: Install golang packages

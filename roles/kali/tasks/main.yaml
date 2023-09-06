@@ -15,6 +15,3 @@
 
 - name: Install python packages using pip
   ansible.builtin.include_tasks: "roles/kali/tasks/python.yaml"
-
-- name: Set up the EFS fileshare
-  ansible.builtin.include_tasks: "roles/kali/tasks/setup-share.yaml"

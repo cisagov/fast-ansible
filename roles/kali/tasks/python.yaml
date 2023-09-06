@@ -35,21 +35,25 @@
   block:
     - name: Install jmespath # requirement for burpsuite setup
       tags: jmespath
-      ansible.builtin.pip: jmespath
+      ansible.builtin.pip:
+        name: jmespath
 
     - name: Install arjun
       tags: arjun
-      ansible.builtin.pip: arjun
+      ansible.builtin.pip:
+        name: arjun
 
     - name: Install subscraper
       tagsx: subscraper
-      ansible.builtin.pip: git+https://github.com/m8sec/subscraper
+      ansible.builtin.pip:
+        name: git+https://github.com/m8sec/subscraper
 
     - name: Install xnLinkFinder.py
       tags: xnlinkfinder
       block:
         - name: Install xnLinkFinder.py with pip+git
-          ansible.builtin.pip: git+https://github.com/xnl-h4ck3r/xnLinkFinder
+          ansible.builtin.pip:
+            name: git+https://github.com/xnl-h4ck3r/xnLinkFinder
         - name: Configure xnLinkFinder.py
           ansible.builtin.file:
             src: /home/vnc/.local/lib/python3.11/site-packages/xnLinkFinder.py

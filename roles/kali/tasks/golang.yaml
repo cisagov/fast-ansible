@@ -30,6 +30,7 @@
     - name: Grep version and set as variable
       ansible.builtin.set_fact:
         golang_version: "{{ golang_version_raw | regex_replace('\n.*','') }}"
+    - name: Debug
       ansible.builtin.debug:
         msg: "{{ golang_version }}"
     - name: Download latest golang

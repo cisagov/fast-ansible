@@ -29,7 +29,7 @@
       register: golang_version_raw
     - name: Grep version and set as variable
       ansible.builtin.set_fact:
-        golang_version: "{{ golang_version_raw | regex_replace('\n.*','') }}"
+        golang_version: "{{ golang_version_raw.content | regex_replace('\n.*','') }}"
     - name: Debug
       ansible.builtin.debug:
         msg: "{{ golang_version }}"

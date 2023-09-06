@@ -39,7 +39,7 @@
       ansible.builtin.unarchive:
         src: /tmp/{{ golang_version }}.linux-amd64.tar.gz
         dest: /usr/local
-        mode: '644'
+        mode: '755'
       become: true
       become_method: ansible.builtin.sudo
 
@@ -141,8 +141,6 @@
           become_method: ansible.builtin.sudo
         - name: Install trufflehog
           ansible.builtin.command:
-            cmd: '/usr/bin/go install'
+            cmd: '/usr/bin/go install -buildvcs=false'
             chdir: /opt/trufflehog
           changed_when: false
-          become: true
-          become_method: ansible.builtin.sudo

@@ -35,19 +35,10 @@
         url: https://dl.google.com/go/{{ golang_version }}.linux-amd64.tar.gz
         dest: /tmp/{{ golang_version }}.linux-amd64.tar.gz
         mode: '644'
-    - name: Create golang directory
-      ansible.builtin.file:
-        path: /usr/local/go
-        state: directory
-        owner: root
-        group: root
-        mode: '755'
-      become: true
-      become_method: ansible.builtin.sudo
     - name: Extract golang tarball
       ansible.builtin.unarchive:
         src: /tmp/{{ golang_version }}.linux-amd64.tar.gz
-        dest: /usr/local/go
+        dest: /usr/local
         mode: '644'
       become: true
       become_method: ansible.builtin.sudo

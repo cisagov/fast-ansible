@@ -23,15 +23,11 @@
 - name: Update golang
   block:
     - name: Find latest golang version
-      block:
-        - name: Get version text
-          ansible.builtin.uri:
-            url: https://go.dev/VERSION?m=text
-            return_content: true
-          register: golang_version_raw
-        - name: Grep version
-          ansible.builtin.set_fact:
-            golang_version: "{{ golang_version_raw | regex_search('\n.*','') }}"
+      ansible.builtin.uri:
+        url: https://go.dev/VERSION?m=text
+        return_content: true
+      register: golang_version_raw
+      golang_version: "{{ golang_version_raw | regex_replace('\n.*','') }}"
     - name: Download latest golang
       ansible.builtin.get_url:
         url: https://dl.google.com/go/{{ golang_version }}.linux-amd64.tar.gz

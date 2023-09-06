@@ -44,7 +44,7 @@
         name: arjun
 
     - name: Install subscraper
-      tagsx: subscraper
+      tags: subscraper
       ansible.builtin.pip:
         name: git+https://github.com/m8sec/subscraper
 

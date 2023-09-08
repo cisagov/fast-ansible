@@ -1,3 +1,5 @@
+# code: language=ansible
+
 # TODO: dynamically update inventory using awscli.
 all:
   children:

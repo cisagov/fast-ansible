@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 - name: Set up a kali instance
   hosts: kalis
@@ -6,7 +8,7 @@
     burpsuite_edition: pro
     burpsuite_pro_license_key: PLACE_HOLDER
   roles:
-    - "roles/common"
-    - "roles/kali"
-      #- "roles/firefox"
-      #- "roles/burpsuite"
+    - "common"
+    - "kali"
+      # - "firefox"
+      # - "burpsuite"

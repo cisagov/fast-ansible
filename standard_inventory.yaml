@@ -1,3 +1,5 @@
+# code: language=ansible
+
 # TODO: dynamically update inventory using awscli.
 all:
   children:
@@ -16,4 +18,3 @@ all:
     teamservers:
       hosts:
         teamserver[0:1]
-    

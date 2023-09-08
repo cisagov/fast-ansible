@@ -1,4 +1,6 @@
 ---
+# code: language=ansible
+
 - name: Install ripgen
   tags:
     - external-pkgs

@@ -42,7 +42,7 @@
     'License successfully installed and activated.' in autoburp.stdout or
     'Certificate downloaded/updated' in autoburp.stdout"
   become: true
-  become_user: "{{ burpsuite_user }}"
+  become_user: 'root'
   when: burpsuite_activate
 
 # Create default user config

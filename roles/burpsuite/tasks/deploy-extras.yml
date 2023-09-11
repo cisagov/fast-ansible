@@ -30,3 +30,5 @@
     owner: 'root'
     group: 'root'
     mode: '644'
+  become: true
+  become_method: ansible.builtin.sudo

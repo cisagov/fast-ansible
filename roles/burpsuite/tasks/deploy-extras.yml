@@ -8,6 +8,8 @@
     owner: "{{ burpsuite_user }}"
     group: "{{ burpsuite_user_details.group }}"
     mode: '0755'
+  become: true
+  become_method: ansible.builtin.sudo
 
 - name: Download jar files
   ansible.builtin.get_url:

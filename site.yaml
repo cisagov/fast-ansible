@@ -11,7 +11,7 @@
     burpsuite_activate: true
   vars_prompt:
     - name: burpsuite_pro_license_key
-      prompt: "Please paste your Burp Suite Pro license key (base64 string):"
+      prompt: "Please paste your Burp Suite Pro license key (base64 string)"
       private: false
   roles:
     - "common"

@@ -4,30 +4,30 @@
 # tasks file for ansible-role-burpsuite
 
 - name: Performs validations
-  ansible.builtin.import_tasks: validations.yml
+  ansible.builtin.import_tasks: validations.yaml
 
 - name: Import variables
-  ansible.builtin.import_tasks: variables.yml
+  ansible.builtin.import_tasks: variables.yaml
 
 - name: Lookup latest version data
-  ansible.builtin.include_tasks: lookup-latest-version.yml
+  ansible.builtin.include_tasks: lookup-latest-version.yaml
   when: burpsuite_version == "latest"
 
 - name: Include Debian tasks
-  ansible.builtin.include_tasks: setup-debian.yml
+  ansible.builtin.include_tasks: setup-debian.yaml
 
 # Check previous installation
 - name: Check for previous Burp Suite installation
-  ansible.builtin.import_tasks: check-previous-install.yml
+  ansible.builtin.import_tasks: check-previous-install.yaml
 
 # Install tasks
 - name: Install Burp Suite
-  ansible.builtin.include_tasks: install.yml
+  ansible.builtin.include_tasks: install.yaml
   when: installed_version is not defined or installed_version != _burpsuite_installer_version
 
 # Burp Suite extras
 - name: Deploy extras
-  ansible.builtin.import_tasks: deploy-extras.yml
+  ansible.builtin.import_tasks: deploy-extras.yaml
 
 # Activate Burp Suite
 - name: Activate Burp Suite and download CA public certificate
@@ -47,4 +47,4 @@
 
 # Create default user config
 - name: User config
-  ansible.builtin.import_tasks: user-config.yml
+  ansible.builtin.import_tasks: user-config.yaml

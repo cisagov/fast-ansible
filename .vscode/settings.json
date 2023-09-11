@@ -1,0 +1,7 @@
+{
+    "ansible.python.interpreterPath": "/usr/local/bin/python3",
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/inventory.json": "file:///Users/sixgen/Documents/code/fast-ansible/local_only_inventory.yaml",
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/requirements.json": "file:///Users/sixgen/Documents/code/fast-ansible/requirements.yaml"
+    }
+}

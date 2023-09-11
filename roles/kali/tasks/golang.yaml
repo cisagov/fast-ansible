@@ -1,4 +1,6 @@
 ---
+# code: language=ansible
+
 - name: Configure bashrc gopath
   tags:
     - golang

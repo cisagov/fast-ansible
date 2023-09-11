@@ -1,4 +1,6 @@
 ---
+# code: language=ansible
+
 # Include tasks
 
 - name: Perform full-upgrade and install additional packages using apt

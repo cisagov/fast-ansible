@@ -1,4 +1,6 @@
 ---
+# code: language=ansible
+
 - name: Prepare /opt
   tags: git
   block:

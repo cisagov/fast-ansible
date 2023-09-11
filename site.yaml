@@ -1,12 +1,20 @@
+# code: language=ansible
+
 ---
 - name: Set up a kali instance
   hosts: kalis
   vars:
-    burpsuite_user: vnc
-    burpsuite_edition: pro
-    burpsuite_pro_license_key: PLACE_HOLDER
+    burpsuite_user: "vnc"
+    burpsuite_edition: "pro"
+    burpsuite_version: "latest"
+    burpsuite_release_channel: "stable"
+    burpsuite_activate: true
+  vars_prompt:
+    - name: burpsuite_pro_license_key
+      prompt: "Please paste your Burp Suite Pro license key (base64 string)"
+      private: false
   roles:
-    - "roles/common"
-    - "roles/kali"
-      #- "roles/firefox"
-      #- "roles/burpsuite"
+    - "common"
+    - "kali"
+      # - "firefox"
+    - "burpsuite"

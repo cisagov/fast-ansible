@@ -13,14 +13,8 @@
   ansible.builtin.include_tasks: lookup-latest-version.yml
   when: burpsuite_version == "latest"
 
-# OS dependencies
-- name: Include Debian tasks if applicable
+- name: Include Debian tasks
   ansible.builtin.include_tasks: setup-debian.yml
-  when: ansible_os_family == 'Debian'
-
-- name: Include Red Hat tasks if applicable
-  ansible.builtin.include_tasks: setup-redhat.yml
-  when: ansible_os_family == 'RedHat'
 
 # Check previous installation
 - name: Check for previous Burp Suite installation

@@ -28,7 +28,7 @@
     chdir: /tmp
   changed_when: true
   become: true
-  become_user: "{{ burpsuite_user }}"
+  become_method: ansible.builtin.sudo
 
 - name: Clean-up files
   ansible.builtin.file:

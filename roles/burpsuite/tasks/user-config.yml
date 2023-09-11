@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 - name: Check for existing user config
   ansible.builtin.stat:

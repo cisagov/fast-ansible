@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 - name: Create directory for Burp Suite extras
   ansible.builtin.file:

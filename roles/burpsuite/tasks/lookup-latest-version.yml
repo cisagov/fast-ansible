@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 - name: Retrieve data from PortSwigger releases API
   ansible.builtin.set_fact:

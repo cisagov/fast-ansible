@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 burpsuite_extras_dir: "/usr/local/lib/BurpSuite"
 burpsuite_extras_jars:

@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 - name: Set installer version
   ansible.builtin.set_fact:

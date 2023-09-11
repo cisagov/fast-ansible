@@ -1,5 +1,7 @@
+# code: language=ansible
+
 ---
-- name: burpsuite_edition is valid
+- name: Value burpsuite_edition is valid
   ansible.builtin.assert:
     that:
       - burpsuite_edition in _burpsuite_edition_enum
@@ -7,7 +9,7 @@
     quiet: true
   changed_when: false
 
-- name: burpsuite_release_channel is valid
+- name: Value burpsuite_release_channel is valid
   ansible.builtin.assert:
     that:
       - burpsuite_release_channel in _burpsuite_release_channel_enum

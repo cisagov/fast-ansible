@@ -1,3 +1,6 @@
+# code: language=ansible
+
+---
 - name: "Check if BurpSuiteCA.der exists"
   stat:
     path: /usr/local/share/ca-certificates/BurpSuiteCA.der

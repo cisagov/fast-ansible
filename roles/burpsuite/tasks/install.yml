@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 - name: Set installer script filename
   ansible.builtin.set_fact:

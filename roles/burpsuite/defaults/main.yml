@@ -1,32 +1,35 @@
+# code: language=ansible
+
 ---
 # defaults file for ansible-role-burpsuite
 
 # User to install as
-burpsuite_user: vnc
+# burpsuite_user: "vnc"
 
 # Automatically activate/license Burp Suite
-burpsuite_activate: true
+# burpsuite_activate: true
 
 # Burp Suite edition: community or pro
-burpsuite_edition: pro
+# burpsuite_edition: "pro"
 
 # Burp Suite Pro license key content. Leave empty for Burp Suite Community edition
-burpsuite_pro_license_key: ''
+# burpsuite_pro_license_key: ''
+# IMPORTED FROM site.yaml PROMPT
 
 # Version to install - "latest" or exact version e.g. "2020.9.2"
-burpsuite_version: latest
+# burpsuite_version: latest
 
 # Release channel to use when version is latest: stable or early_adopter
-burpsuite_release_channel: stable
+# burpsuite_release_channel: stable
 
 # SHA256 checksum for Burp Suite installer. Required if burpsuite_version is set to an exact version
 # burpsuite_installer_sha256_checksum:
 
 # Burp Suite install directory. If left undefined, it will install under the user's home directory
-# burpsuite_install_dir:
+burpsuite_install_dir: /usr/local/BurpSuitePro
 
 # Extras directory for jars and activation script. If left undefined, it will install under the user's home directory
-# burpsuite_extras_dir:
+burpsuite_extras_dir: "{{ burpsuite_install_dir }}/extras"
 
 # Path to save the Burp Suite CA public certificate
 # burpsuite_cacert_path: "{{ burpsuite_extras_dir }}/PortSwigger_CA.der"

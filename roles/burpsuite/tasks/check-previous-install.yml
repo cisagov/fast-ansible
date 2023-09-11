@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 - name: Check for previous install
   ansible.builtin.stat:

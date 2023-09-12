@@ -1,5 +1,5 @@
 # code: language=ansible
 
 ---
-- include: "burp.yaml"
-- include: "firefox.yaml"
+- name: Perform Firefox configuration
+  ansible.builtin.import_tasks: firefox.yaml

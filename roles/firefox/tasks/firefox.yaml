@@ -1,10 +1,12 @@
 # code: language=ansible
 
 ---
-- name: "Updating Firefox Policies"
-  template: 
-    src: "templates/policies.json.j2"
-    dest: "/usr/share/firefox-esr/distribution/policies.json"
+- name: "Updating Firefox policies"
+  ansible.builtin.template:
+    src: 'templates/policies.json.j2'
+    dest: '/usr/share/firefox-esr/distribution/policies.json'
+    owner: 'root'
+    group: 'root'
+    mode: '644'
   become: true
-  become_method: sudo
-
+  become_method: ansible.builtin.sudo

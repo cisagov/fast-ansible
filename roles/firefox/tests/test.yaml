@@ -1,7 +1,0 @@
-# code: language=ansible
-
----
-- hosts: localhost
-  remote_user: root
-  roles:
-    - customize-browser

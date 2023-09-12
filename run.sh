@@ -12,6 +12,9 @@ if ([ $# -eq 1 ] && ([ $1 == "local" ] || [ $1 == "remote" ])) ; then
 	fi
 
 else
-
-	echo '"./run.sh local" or "./run.sh remote"'
+	cat <<- DOCOPT
+	Usage:
+	  $0 local
+	  $0 remote
+	DOCOPT
 fi

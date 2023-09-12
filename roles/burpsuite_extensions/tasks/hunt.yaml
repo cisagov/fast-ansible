@@ -1,0 +1,27 @@
+---
+- name: Clone HUNT extension
+  ansible.builtin.git:
+    repo: https://github.com/bugcrowdlabs/HUNT.git
+    dest: "{{ extension_dir }}/HUNT"
+
+- name: Find path to python methodology file
+  ansible.builtin.find:
+    paths: "{{ extension_dir }}/HUNT"
+    patterns: "*methodology.py"
+    recurse: "yes"
+    file_type: "file"
+  register: methodology_path
+
+- name: Create fact to reference path in other roles
+  ansible.builtin.set_fact: hunt_methodology_path="{{ methodology_path.files.0.path }}"
+
+- name: Find path to python scanner file
+  ansible.builtin.find:
+    paths: "{{ extension_dir }}/HUNT"
+    patterns: "*scanner.py"
+    recurse: "yes"
+    file_type: "file"
+  register: scanner_path
+
+- name: Create fact to reference path in other roles
+  ansible.builtin.set_fact: hunt_scanner_path="{{ scanner_path.files.0.path }}"

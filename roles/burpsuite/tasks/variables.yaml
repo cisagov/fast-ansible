@@ -22,7 +22,7 @@
 
 - name: Set burpsuite_extras_dir
   ansible.builtin.set_fact:
-    burpsuite_extras_dir: "{{ burpsuite_user_details.home }}/BurpSuiteExtras"
+    burpsuite_extras_dir: "{{ burpsuite_user_details.home }}/extras"
   when: burpsuite_extras_dir is undefined
 
 - name: Set burpsuite_cacert_path

@@ -9,6 +9,8 @@
     burpsuite_version: "latest"
     burpsuite_release_channel: "stable"
     burpsuite_activate: true
+    burpsuite_install_dir: /usr/local/BurpSuitePro
+    burpsuite_extras_dir: "{{ burpsuite_install_dir }}/extras"
   vars_prompt:
     - name: burpsuite_pro_license_key
       prompt: "Please paste your Burp Suite Pro license key (base64 string)"

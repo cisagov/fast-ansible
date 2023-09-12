@@ -1,3 +1,0 @@
-bapp_link: https://portswigger.net/bappstore/bapps/download/470b7057b86f41c396a97903377f3d81
-bapp_file: "{{extension_dir}}/logger++.bapp"
-unzip_dir: "{{extension_dir}}/logger++"

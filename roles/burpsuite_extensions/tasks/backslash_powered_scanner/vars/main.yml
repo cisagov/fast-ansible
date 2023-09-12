@@ -1,3 +1,0 @@
-bapp_link: https://portswigger.net/bappstore/bapps/download/9cff8c55432a45808432e26dbb2b41d8
-bapp_file: "{{extension_dir}}/backslash_powered_scanner.bapp"
-unzip_dir: "{{extension_dir}}/backslash_powered_scanner"

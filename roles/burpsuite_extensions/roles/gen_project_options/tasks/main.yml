@@ -1,0 +1,5 @@
+- name: Generate Burp Project Options from template
+  ansible.builtin.template:
+    src: "{{ ansible_workspace }}/templates/burp_project_options.json.tmpl"
+    dest: "{{ extension_dir }}/burp_project_options.json"
+    mode: "0755"

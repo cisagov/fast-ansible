@@ -1,4 +1,7 @@
-Credit and thanks to iesplin ([https://github.com/iesplin/ansible-role-burpsuite](https://github.com/iesplin/ansible-role-burpsuite)) for ansible-role-burpsuite and to IppSec ([https://github.com/IppSec/parrot-build/](https://github.com/IppSec/parrot-build)) for the customize-browser role.
+Credit and thanks to:
+    iesplin ([https://github.com/iesplin/ansible-role-burpsuite](https://github.com/iesplin/ansible-role-burpsuite)) for ansible-role-burpsuite
+    IppSec ([https://github.com/IppSec/parrot-build](https://github.com/IppSec/parrot-build)) for the customize-browser role
+    l50 ([https://github.com/l50/ansible-burp_extensions](https://github.com/l50/ansible-burp_extensions)) for ansible-burp_extensions
 
 Use run.sh script:
 ```

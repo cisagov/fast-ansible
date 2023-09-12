@@ -1,0 +1,38 @@
+---
+- name: Install Burp Extensions
+  hosts: localhost
+  connection: local
+  vars:
+    logrotate_scripts:
+      - name: "Configure logrotate with the log file"
+        path: "{{ log_path }}/{{ log_file_name }}"
+        options:
+          - daily
+          - missingok
+          - rotate 7
+          - maxage 7
+          - dateext
+          - dateyesterday
+
+  roles:
+    - common
+    - activescan++
+    - autorize
+    - backslash_powered_scanner
+    - co2
+    - content_type_converter
+    - copy_as_python_requests
+    #- collaborator_everywhere
+    - espresso
+    #- freddy_deserialization_bug_finder
+    - graphql_raider
+    - http_request_smuggler
+    - hunt
+    - j2ee_scan
+    - json_web_tokens
+    - paramalyzer
+    - retire_js
+    - saml_raider
+    - upload_scanner
+    - gen_user_options
+    - gen_project_options

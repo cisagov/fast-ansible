@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-if [[ "$#" -eq 1 && [[ "$1" == "local" || "$1" == "remote" ]] ]] ; then
+if ([ $# -eq 1 ] && ([ $1 == "local" ] || [ $1 == "remote" ])) ; then
 
 	sudo apt update
 	sudo apt -y install ansible

@@ -18,5 +18,5 @@
   roles:
     - "common"
     - "kali"
-      # - "firefox"
     - "burpsuite"
+    - "firefox"

@@ -7,3 +7,5 @@ firefox_plugins:
   - "wappalyzer"
   - "darkreader"
   - "retire-js"
+  - "cookie-editor"
+  - "user-agent-string-switcher"

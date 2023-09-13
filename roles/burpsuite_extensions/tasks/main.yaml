@@ -28,5 +28,3 @@
 - name: BApp Extensions
   ansible.builtin.include_tasks: bapp_install.yaml
   loop: "{{ lookup('ansible.builtin.dict', bapp_extensions) }}"
-  become: true
-  become_method: ansible.builtin.sudo

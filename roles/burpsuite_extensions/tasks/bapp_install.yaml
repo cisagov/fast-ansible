@@ -1,8 +1,7 @@
 # code: language=ansible
 
 ---
-- name: Download and install BApp extensions
-  loop: "{{ lookup('ansible.builtin.dict', bapp_extensions) }}"
+- name: Download and install BApp extension
   block:
     - name: Download BApp file
       ansible.builtin.get_url:

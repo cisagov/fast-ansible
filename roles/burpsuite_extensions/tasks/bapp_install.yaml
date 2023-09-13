@@ -1,0 +1,27 @@
+# code: language=ansible
+
+---
+- name: Install bapp
+  loop: "{{ lookup('ansible.builtin.dict', bapp_extensions) }}"
+  block:
+    - name: Download bapp
+      ansible.builtin.get_url:
+        url: "{{ item.value.bapp_link }}"
+        dest: "{{ extension_dir }}/{{ item.key }}.bapp"
+        mode: "0755"
+
+    - name: Create directory for bapp
+      ansible.builtin.file:
+        path: "{{ extension_dir }}/{{ item.key }}"
+        state: directory
+        mode: "0755"
+
+    - name: Unarchive bapp
+      ansible.builtin.unarchive:
+        src: "{{ extension_dir }}/{{ item.key }}.bapp"
+        dest: "{{ extension_dir }}/{{ item.key }}"
+
+    - name: Clean up bapp
+      ansible.builtin.file:
+        state: absent
+        path: "{{ extension_dir }}/{{ item.key }}.bapp"

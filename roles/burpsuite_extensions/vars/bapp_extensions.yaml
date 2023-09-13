@@ -1,98 +1,42 @@
 # code: language=ansible
 
 ---
-burpsuite_extensions:
-  - name: activescan++
-    bapp_link: https://portswigger.net/bappstore/bapps/download/3123d5b5f25c4128894d97ea1acc4976
-    bapp_file: "{{ extension_dir }}/active-scan-plus-plus.bapp"
-    unzip_dir: "{{ extension_dir }}/active-scan-plus-plus"
-
-  - name: authmatrix
-    bapp_link: https://portswigger.net/bappstore/bapps/download/30d8ee9f40c041b0bfec67441aad158e
-    bapp_file: "{{ extension_dir }}/authmatrix.bapp"
-    unzip_dir: "{{ extension_dir }}/authmatrix"
-
-  - name: autorize
-    bapp_link: https://portswigger.net/bappstore/bapps/download/f9bbac8c4acf4aefa4d7dc92a991af2f
-    bapp_file: "{{ extension_dir }}/autorize.bapp"
-    unzip_dir: "{{ extension_dir }}/autorize"
-
-  - name: backslash_powered_scanner
-    bapp_link: https://portswigger.net/bappstore/bapps/download/9cff8c55432a45808432e26dbb2b41d8
-    bapp_file: "{{ extension_dir }}/backslash_powered_scanner.bapp"
-    unzip_dir: "{{ extension_dir }}/backslash_powered_scanner"
-
-  - name: co2
-    bapp_link: https://portswigger.net/bappstore/bapps/download/c5071c7a7e004f72ae485e8a72911afc
-    bapp_file: "{{ extension_dir }}/co2.bapp"
-    unzip_dir: "{{ extension_dir }}/co2"
-
-  - name: collaborator_everywhere
-    bapp_link: https://portswigger.net/bappstore/bapps/download/2495f6fb364d48c3b6c984e226c02968
-    bapp_file: "{{ extension_dir }}/collaborator_everywhere.bapp"
-    unzip_dir: "{{ extension_dir }}/collaborator_everywhere"
-
-  - name: content_type_converter
-    bapp_link: https://portswigger.net/bappstore/bapps/download/db57ecbe2cb7446292a94aa6181c9278
-    bapp_file: "{{ extension_dir }}/content_type_converter.bapp"
-    unzip_dir: "{{ extension_dir }}/content_type_converter"
-
-  - name: copy_as_python_requests
-    bapp_link: https://portswigger.net/bappstore/bapps/download/b324647b6efa4b6a8f346389730df160
-    bapp_file: "{{ extension_dir }}/copy_as_python_requests.bapp"
-    unzip_dir: "{{ extension_dir }}/copy_as_python_requests"
-
-  - name: espresso
-    bapp_link: https://portswigger.net/bappstore/bapps/download/e1d08d4ab1ea4c17be3431d7d2b20b30
-    bapp_file: "{{ extension_dir }}/espresso.bapp"
-    unzip_dir: "{{ extension_dir }}/espresso"
-
-  - name: freddy_deserialization_bug_finder
-    bapp_link: https://portswigger.net/bappstore/bapps/download/ae1cce0c6d6c47528b4af35faebc3ab3
-    bapp_file: "{{ extension_dir }}/freddy_deserialization_bug_finder.bapp"
-    unzip_dir: "{{ extension_dir }}/freddy_deserialization_bug_finder"
-
-  - name: graphql_raider
-    bapp_link: https://portswigger.net/bappstore/bapps/download/4841f0d78a554ca381c65b26d48207e6
-    bapp_file: "{{ extension_dir }}/graphql_raider.bapp"
-    unzip_dir: "{{ extension_dir }}/graphql_raider"
-
-  - name: http_request_smuggler
-    bapp_link: https://portswigger.net/bappstore/bapps/download/aaaa60ef945341e8a450217a54a11646
-    bapp_file: "{{ extension_dir }}/http_request_smuggler.bapp"
-    unzip_dir: "{{ extension_dir }}/http_request_smuggler"
-
-  - name: j2ee_scan
-    bapp_link: https://portswigger.net/bappstore/bapps/download/7ec6d429fed04cdcb6243d8ba7358880
-    bapp_file: "{{ extension_dir }}/j2ee_scan.bapp"
-    unzip_dir: "{{ extension_dir }}/j2ee_scan"
-
-  - name: json_web_tokens
-    bapp_link: https://portswigger.net/bappstore/bapps/download/f923cbf91698420890354c1d8958fee6
-    bapp_file: "{{ extension_dir }}/json_web_tokens.bapp"
-    unzip_dir: "{{ extension_dir }}/json_web_tokens"
-
-  - name: logger++
-    bapp_link: https://portswigger.net/bappstore/bapps/download/470b7057b86f41c396a97903377f3d81
-    bapp_file: "{{ extension_dir }}/logger++.bapp"
-    unzip_dir: "{{ extension_dir }}/logger++"
-
-  - name: paramalyzer
-    bapp_link: https://portswigger.net/bappstore/bapps/download/0ac13c45adff4e31a3ca8dc76dd6286c
-    bapp_file: "{{ extension_dir }}/paramalyzer.bapp"
-    unzip_dir: "{{ extension_dir }}/paramalyzer"
-
-  - name: retire_js
-    bapp_link: https://portswigger.net/bappstore/bapps/download/36238b534a78494db9bf2d03f112265c
-    bapp_file: "{{ extension_dir }}/retire_js.bapp"
-    unzip_dir: "{{ extension_dir }}/retire_js"
-
-  - name: saml_raider
-    bapp_link: https://portswigger.net/bappstore/bapps/download/c61cfa893bb14db4b01775554f7b802e
-    bapp_file: "{{ extension_dir }}/saml_raider.bapp"
-    unzip_dir: "{{ extension_dir }}/saml_raider"
-
-  - name: upload_scanner
-    bapp_link: https://portswigger.net/bappstore/bapps/download/b2244cbb6953442cb3c82fa0a0d908fa
-    bapp_file: "{{ extension_dir }}/upload_scanner.bapp"
-    unzip_dir: "{{ extension_dir }}/upload_scanner"
+bapp_extensions:
+  activescan_plus_plus:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/3123d5b5f25c4128894d97ea1acc4976'
+  authmatrix:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/30d8ee9f40c041b0bfec67441aad158e'
+  autorize:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/f9bbac8c4acf4aefa4d7dc92a991af2f'
+  backslash_powered_scanner:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/9cff8c55432a45808432e26dbb2b41d8'
+  co2:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/c5071c7a7e004f72ae485e8a72911afc'
+  collaborator_everywhere:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/2495f6fb364d48c3b6c984e226c02968'
+  content_type_converter:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/db57ecbe2cb7446292a94aa6181c9278'
+  copy_as_python_requests:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/b324647b6efa4b6a8f346389730df160'
+  espresso:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/e1d08d4ab1ea4c17be3431d7d2b20b30'
+  freddy_deserialization_bug_finder:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/ae1cce0c6d6c47528b4af35faebc3ab3'
+  graphql_raider:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/4841f0d78a554ca381c65b26d48207e6'
+  http_request_smuggler:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/aaaa60ef945341e8a450217a54a11646'
+  j2ee_scan:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/7ec6d429fed04cdcb6243d8ba7358880'
+  json_web_tokens:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/f923cbf91698420890354c1d8958fee6'
+  logger_plus_plus:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/470b7057b86f41c396a97903377f3d81'
+  paramalyzer:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/0ac13c45adff4e31a3ca8dc76dd6286c'
+  retire_js:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/36238b534a78494db9bf2d03f112265c'
+  saml_raider:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/c61cfa893bb14db4b01775554f7b802e'
+  upload_scanner:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/b2244cbb6953442cb3c82fa0a0d908fa'

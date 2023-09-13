@@ -1,3 +1,5 @@
+# code: language=ansible
+
 ---
 - name: Clone HUNT extension
   ansible.builtin.git:

@@ -6,19 +6,27 @@
     path: "{{ extension_dir }}"
     state: directory
     mode: '755'
+  become: true
+  become_method: ansible.builtin.sudo
 
 - name: Generate user options from template
   ansible.builtin.template:
     src: "{{ ansible_workspace }}/templates/burp_user_options.json.j2"
     dest: "{{ extension_dir }}/burp_user_options.json"
     mode: '755'
+  become: true
+  become_method: ansible.builtin.sudo
 
 - name: Generate project options from template
   ansible.builtin.template:
     src: "{{ ansible_workspace }}/templates/burp_project_options.json.j2"
     dest: "{{ extension_dir }}/burp_project_options.json"
     mode: '755'
+  become: true
+  become_method: ansible.builtin.sudo
 
 - name: BApp Extensions
   ansible.builtin.include_tasks: bapp_install.yaml
   loop: "{{ lookup('ansible.builtin.dict', bapp_extensions) }}"
+  become: true
+  become_method: ansible.builtin.sudo

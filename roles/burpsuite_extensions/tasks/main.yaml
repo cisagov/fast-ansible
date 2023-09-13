@@ -20,4 +20,5 @@
     mode: '755'
 
 - name: BApp Extensions
-  ansible.builtin.import_tasks: bapp_install.yaml
+  ansible.builtin.include_tasks: bapp_install.yaml
+  loop: "{{ lookup('ansible.builtin.dict', bapp_extensions) }}"

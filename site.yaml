@@ -20,6 +20,4 @@
     - "kali"
     - "burpsuite"
     - "firefox"
-
-- name: Set variables on an imported playbook
-  ansible.builtin.import_playbook: burpsuite_extensions/site.yaml
+    - "burpsuite_extensions"

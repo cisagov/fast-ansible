@@ -26,3 +26,5 @@ bapp_extensions:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/9abaa233088242e8be252cd4ff534988'
   viewstate_editor:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/ba17d9fb487448b48368c22cb70048dc'
+  wsdler:
+    bapp_link: 'https://portswigger.net/bappstore/bapps/download/594a49bb233748f2bc80a9eb18a2e08f'

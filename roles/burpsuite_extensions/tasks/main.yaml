@@ -22,9 +22,9 @@
     - co2
     - content_type_converter
     - copy_as_python_requests
-    #- collaborator_everywhere
+    # - collaborator_everywhere
     - espresso
-    #- freddy_deserialization_bug_finder
+    # - freddy_deserialization_bug_finder
     - graphql_raider
     - http_request_smuggler
     - hunt

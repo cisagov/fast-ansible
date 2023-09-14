@@ -1,6 +1,16 @@
 # code: language=ansible
 
 ---
+# vars file for ansible-role-burpsuite
+
+_burpsuite_edition_enum:
+  community: community
+  pro: pro
+
+_burpsuite_release_channel_enum:
+  stable: Stable
+  early_adopter: Early Adopter
+
 # Directory in which to install the various extensions
 extension_dir: "{{ burpsuite_install_dir }}/extensions"
 

@@ -39,7 +39,20 @@
             }
         },
         "extender":{
-            "extensions":[],
+            "extensions":[
+{% for item in lookup('ansible.builtin.dict', bapp_extensions) %}
+                {
+                    "bapp_serial_version":{{ item.value.bapp_serial }},
+                    "bapp_uuid":"{{ item.value.bapp_uuid }}",
+                    "errors":"ui",
+                    "extension_file":"{{ extension_dir }}/{{ item.key }}/{{ item.value.extension_file }}",
+                    "extension_type":"{{ item.value.extension_type }}",
+                    "loaded":true,
+                    "name":"{{ item.value.bapp_name }}",
+                    "output":"ui"
+                }{{ "," if not loop.last }}
+{% endfor %}
+            ],
             "java":{
                 "folder_for_loading_library_jar_files":""
             },

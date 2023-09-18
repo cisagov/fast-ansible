@@ -45,10 +45,6 @@
   become_user: 'root'
   when: burpsuite_activate
 
-# Create default user config
-- name: User config
-  ansible.builtin.import_tasks: user-config.yaml
-
 - name: Create extensions directory
   ansible.builtin.file:
     path: "{{ extension_dir }}"
@@ -76,3 +72,7 @@
 - name: BApp Extensions
   ansible.builtin.include_tasks: bapp_install.yaml
   loop: "{{ lookup('ansible.builtin.dict', bapp_extensions) }}"
+
+# Create default user config
+- name: User config
+  ansible.builtin.import_tasks: user-config.yaml

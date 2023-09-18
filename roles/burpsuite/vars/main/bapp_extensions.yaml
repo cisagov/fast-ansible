@@ -1,14 +1,29 @@
 # code: language=ansible
 
 ---
+# Blank values will be updated dynamically based on newest manifest information
+# bapp_extensions is a dict of dicts, one for each extension, containing the following vars:
+# bapp_name
+# bapp_link
+# bapp_serial
+# bapp_uuid
+# bapp_ext_file
+# bapp_ext_type
+# bapp_build_cmd
+#
+# The extension key name and bapp_link are set here. Get the from the bapp store (just copy the
+# download link and remove the CDM stuff). NOTE: Ensure the var name does not begin with a
+# number, contain special chars, and use underscores rather than dashes (i.e.: fourofthree-bypasser
+# or loggerplusplus)
+
 bapp_extensions:
-  403-bypasser:
+  fourohthree_bypasser:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/444407b96d9c4de0adb7aed89e826122'
   autorize:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/f9bbac8c4acf4aefa4d7dc92a991af2f'
   burp_bounty:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/618f0b2489564607825e93eeed8b9e0a'
-  content-type-converter:
+  content_type_converter:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/db57ecbe2cb7446292a94aa6181c9278'
   hackvertor:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/65033cbd2c344fbabe57ac060b5dd100'
@@ -18,7 +33,7 @@ bapp_extensions:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/0ab7a94d8e11449daaf0fb387431225b'
   json_web_tokens:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/f923cbf91698420890354c1d8958fee6'
-  logger++:
+  loggerplusplus:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/470b7057b86f41c396a97903377f3d81'
   param_miner:
     bapp_link: 'https://portswigger.net/bappstore/bapps/download/17d2949a985c4b7ca092728dba871943'

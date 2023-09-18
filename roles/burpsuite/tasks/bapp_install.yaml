@@ -26,6 +26,75 @@
       become: true
       become_method: ansible.builtin.sudo
 
+    - name: Set path to manifest file
+      ansible.builtin.set_fact:
+        bapp_manifest_file: "{{ extension_dir }}/{{ item.key }}/BappManifest.bmf"
+    - name: Read manifest file into variable
+      ansible.builtin.set_fact:
+        bapp_manifest: "{{ lookup('file', bapp_manifest_file) }}"
+
+    - name: Set variables from manifest file
+      ansible.builtin.set_fact:
+        bapp_name: >-
+           {{
+             bapp_manifest |
+             regex_search('^Name: .*', multiline=True) |
+             regex_replace('^Name: (.*)$', '\1')
+           }}
+        bapp_serial: >-
+           {{
+             bapp_manifest |
+             regex_search('^SerialVersion: .*', multiline=True) |
+             regex_replace('^SerialVersion: (.*)$', '\1')
+           }}
+        bapp_uuid: >-
+           {{
+             bapp_manifest |
+             regex_search('^Uuid: .*', multiline=True) |
+             regex_replace('^Uuid: (.*)$', '\1')
+           }}
+        bapp_ext_file: >-
+           {{
+             bapp_manifest |
+             regex_search('^EntryPoint: .*', multiline=True) |
+             regex_replace('^EntryPoint: (.*)$', '\1')
+           }}
+        bapp_ext_type: >-
+           {{
+             bapp_manifest |
+             regex_search('^ExtensionType: .*', multiline=True) |
+             regex_replace('^ExtensionType: (.*)$', '\1') |
+             replace('1','java') |
+             replace('2','python') |
+             replace('3','ruby')
+           }}
+        bapp_build_cmd: >-
+           {{
+             bapp_manifest |
+             regex_search('^BuildCommand: .*', multiline=True) |
+             regex_replace('^BuildCommand: (.*)$', '\1')
+           }}
+    - name: Set bapp_name
+      ansible.builtin.set_fact:
+        bapp_extensions: "{{ bapp_extensions | combine({item.key: {'bapp_name': bapp_name}}, recursive=True) }}"
+    - name: Set bapp_serial
+      ansible.builtin.set_fact:
+        bapp_extensions: "{{ bapp_extensions | combine({item.key: {'bapp_serial': bapp_serial}}, recursive=True) }}"
+    - name: Set bapp_uuid
+      ansible.builtin.set_fact:
+        bapp_extensions: "{{ bapp_extensions | combine({item.key: {'bapp_uuid': bapp_uuid}}, recursive=True) }}"
+    - name: Set bapp_ext_file
+      ansible.builtin.set_fact:
+        bapp_extensions: "{{ bapp_extensions | combine({item.key: {'bapp_ext_file': bapp_ext_file}}, recursive=True) }}"
+    - name: Set bapp_ext_type
+      ansible.builtin.set_fact:
+        bapp_extensions: "{{ bapp_extensions | combine({item.key: {'bapp_ext_type': bapp_ext_type}}, recursive=True) }}"
+    - name: Set bapp_build_cmd
+      ansible.builtin.set_fact:
+        bapp_extensions: "{{ bapp_extensions | combine({item.key: {'bapp_build_cmd': bapp_build_cmd}}, recursive=True) }}"
+
+      # if build command, run it
+
     - name: Clean up downloaded file
       ansible.builtin.file:
         state: absent

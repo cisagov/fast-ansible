@@ -23,6 +23,12 @@
     - name: Set path to manifest file
       ansible.builtin.set_fact:
         bapp_manifest_file: "{{ burpsuite_extensions_dir }}/{{ item.value.bapp_uuid }}/BappManifest.bmf"
+
+    - name: Ensure manifest file has Unix line-endings
+      ansible.builtin.command:
+        cmd: dos2unix {{ bapp_manifest_file }}
+      changed_when: false
+
     - name: Read manifest file into variable
       ansible.builtin.set_fact:
         bapp_manifest: "{{ lookup('file', bapp_manifest_file) }}"

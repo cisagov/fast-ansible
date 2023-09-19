@@ -9,7 +9,13 @@
         dest: "/tmp/{{ item.value.bapp_uuid }}.bapp"
         mode: "0755"
 
-    - name: Create installation directory
+    - name: Create bapp parent directory
+      ansible.builtin.file:
+        path: "{{ burpsuite_extensions_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Create bapp directory
       ansible.builtin.file:
         path: "{{ burpsuite_extensions_dir }}/{{ item.value.bapp_uuid }}"
         state: directory

@@ -5,30 +5,18 @@
   ansible.builtin.file:
     path: "{{ burpsuite_extras_dir }}"
     state: directory
-    owner: 'root'
-    group: 'root'
     mode: '755'
-  become: true
-  become_method: ansible.builtin.sudo
 
 - name: Download jar files
   ansible.builtin.get_url:
     url: "{{ item.value.url }}"
     dest: "{{ burpsuite_extras_dir }}/{{ item.value.jar }}"
     checksum: "{{ item.value.checksum }}"
-    owner: 'root'
-    group: 'root'
     mode: '644'
-  become: true
-  become_method: ansible.builtin.sudo
   loop: "{{ lookup('dict', burpsuite_extras_jars) }}"
 
 - name: Copy autoburp.py script to extras directory
   ansible.builtin.copy:
     src: autoburp.py
     dest: "{{ burpsuite_extras_dir }}/autoburp.py"
-    owner: 'root'
-    group: 'root'
     mode: '644'
-  become: true
-  become_method: ansible.builtin.sudo

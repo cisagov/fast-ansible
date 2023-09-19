@@ -11,7 +11,7 @@
     burpsuite_activate: true
     burpsuite_install_dir: /usr/local/BurpSuitePro
     burpsuite_extras_dir: "{{ burpsuite_user_details.home }}/.BurpSuite/extras"
-    burpsuite_extensions_dir: "{{ burpsuite_user_details.home }}/.BurpSuite/bapp"
+    burpsuite_extensions_dir: "{{ burpsuite_user_details.home }}/.BurpSuite/bapps"
   vars_prompt:
     - name: burpsuite_pro_license_key
       prompt: "Please paste your Burp Suite Pro license key (base64 string)"

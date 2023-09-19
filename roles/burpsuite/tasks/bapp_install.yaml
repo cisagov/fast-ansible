@@ -5,30 +5,24 @@
   block:
     - name: Download BApp file
       ansible.builtin.get_url:
-        url: "{{ item.value.bapp_link }}"
-        dest: "{{ extension_dir }}/{{ item.key }}.bapp"
+        url: "https://portswigger.net/bappstore/bapps/download/{{ item.value.bapp_uuid }}"
+        dest: "/tmp/{{ item.value.bapp_uuid }}.bapp"
         mode: "0755"
-      become: true
-      become_method: ansible.builtin.sudo
 
     - name: Create installation directory
       ansible.builtin.file:
-        path: "{{ extension_dir }}/{{ item.key }}"
+        path: "{{ burpsuite_extensions_dir }}/{{ item.value.bapp_uuid }}"
         state: directory
         mode: "0755"
-      become: true
-      become_method: ansible.builtin.sudo
 
     - name: Unarchive BApp file
       ansible.builtin.unarchive:
-        src: "{{ extension_dir }}/{{ item.key }}.bapp"
-        dest: "{{ extension_dir }}/{{ item.key }}"
-      become: true
-      become_method: ansible.builtin.sudo
+        src: "/tmp/{{ item.value.bapp_uuid }}.bapp"
+        dest: "{{ burpsuite_extensions_dir }}/{{ item.value.bapp_uuid }}"
 
     - name: Set path to manifest file
       ansible.builtin.set_fact:
-        bapp_manifest_file: "{{ extension_dir }}/{{ item.key }}/BappManifest.bmf"
+        bapp_manifest_file: "{{ burpsuite_extensions_dir }}/{{ item.value.bapp_uuid }}/BappManifest.bmf"
     - name: Read manifest file into variable
       ansible.builtin.set_fact:
         bapp_manifest: "{{ lookup('file', bapp_manifest_file) }}"
@@ -98,6 +92,4 @@
     - name: Clean up downloaded file
       ansible.builtin.file:
         state: absent
-        path: "{{ extension_dir }}/{{ item.key }}.bapp"
-      become: true
-      become_method: ansible.builtin.sudo
+        path: "/tmp/{{ item.key }}.bapp"

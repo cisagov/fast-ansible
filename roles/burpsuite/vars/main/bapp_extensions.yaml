@@ -4,42 +4,42 @@
 # Blank values will be updated dynamically based on newest manifest information
 # bapp_extensions is a dict of dicts, one for each extension, containing the following vars:
 # bapp_name
-# bapp_link
+# bapp_uuid
 # bapp_serial
 # bapp_uuid
 # bapp_ext_file
 # bapp_ext_type
 # bapp_build_cmd
 #
-# The extension key name and bapp_link are set here. Get the from the bapp store (just copy the
-# download link and remove the CDM stuff). NOTE: Ensure the var name does not begin with a
+# The extension key name and bapp_uuid are set here. Get the UUID from the bapp store (just copy the
+# download link and pull out the hashsum). NOTE: Ensure the var name does not begin with a
 # number, contain special chars, and use underscores rather than dashes (i.e.: fourofthree-bypasser
 # or loggerplusplus)
 
 bapp_extensions:
   fourohthree_bypasser:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/444407b96d9c4de0adb7aed89e826122'
+    bapp_uuid: '444407b96d9c4de0adb7aed89e826122'
   autorize:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/f9bbac8c4acf4aefa4d7dc92a991af2f'
+    bapp_uuid: 'f9bbac8c4acf4aefa4d7dc92a991af2f'
   burp_bounty:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/618f0b2489564607825e93eeed8b9e0a'
+    bapp_uuid: '618f0b2489564607825e93eeed8b9e0a'
   content_type_converter:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/db57ecbe2cb7446292a94aa6181c9278'
+    bapp_uuid: 'db57ecbe2cb7446292a94aa6181c9278'
   hackvertor:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/65033cbd2c344fbabe57ac060b5dd100'
+    bapp_uuid: '65033cbd2c344fbabe57ac060b5dd100'
   http_request_smuggler:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/aaaa60ef945341e8a450217a54a11646'
+    bapp_uuid: 'aaaa60ef945341e8a450217a54a11646'
   js_miner:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/0ab7a94d8e11449daaf0fb387431225b'
+    bapp_uuid: '0ab7a94d8e11449daaf0fb387431225b'
   json_web_tokens:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/f923cbf91698420890354c1d8958fee6'
+    bapp_uuid: 'f923cbf91698420890354c1d8958fee6'
   loggerplusplus:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/470b7057b86f41c396a97903377f3d81'
+    bapp_uuid: '470b7057b86f41c396a97903377f3d81'
   param_miner:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/17d2949a985c4b7ca092728dba871943'
+    bapp_uuid: '17d2949a985c4b7ca092728dba871943'
   turbo_intruder:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/9abaa233088242e8be252cd4ff534988'
+    bapp_uuid: '9abaa233088242e8be252cd4ff534988'
   viewstate_editor:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/ba17d9fb487448b48368c22cb70048dc'
+    bapp_uuid: 'ba17d9fb487448b48368c22cb70048dc'
   wsdler:
-    bapp_link: 'https://portswigger.net/bappstore/bapps/download/594a49bb233748f2bc80a9eb18a2e08f'
+    bapp_uuid: '594a49bb233748f2bc80a9eb18a2e08f'
